@@ -1,0 +1,12 @@
+{
+    "name": "Tree_Map",
+    "url": "https://github.com/ErikRikoo/TreeMap",
+    "license": "MIT",
+    "tags":["cross", "utility"],
+    "description": "This library provides a way to store a value with a set of keys",
+    "version": "1.0.1",
+    "classPath": "src/",
+    "releasenote": "Renamed the function set to add to match behaviour",
+    "contributors": ["Rikoo"],
+    "dependencies": {}
+}

@@ -18,7 +18,7 @@ class TreeMapTest {
 
     @:describe("Should create a one branch tree for the first insert")
     public function insertOne() {
-        tree.set(["a", "b"], 5);
+        tree.add(["a", "b"], 5);
 
         switch(tree.root) {
             case Root([
@@ -37,7 +37,7 @@ class TreeMapTest {
 
     @:describe("Should create new nodes on the same branchs if the keys are the same")
     public function insertOnSameBranch() {
-        tree.set(["a", "b", "c"], 6);
+        tree.add(["a", "b", "c"], 6);
 
         switch(tree.root) {
             case Root([
@@ -56,7 +56,7 @@ class TreeMapTest {
 
     @:describe("Should create a new branch if keys are different at some point")
     public function insertOnAnotherBranch() {
-        tree.set(["a", "c", "c"], 7);
+        tree.add(["a", "c", "c"], 7);
 
         switch(tree.root) {
             case Root([
@@ -73,10 +73,10 @@ class TreeMapTest {
         }
     }
 
-    @describe("Should throw an exception if the pair (kays, value) is already set")
+    @describe("Should throw an exception if the pair (kays, value) is already add")
     public function insertErrorTesting() {
         try{
-            tree.set(["a", "c", "c"], 7);
+            tree.add(["a", "c", "c"], 7);
             return new Assertion(false, "The methods has not returned an exception");
         } catch(e:Any) {
             return new Assertion(true, "The methods has returned an exception");
@@ -86,9 +86,9 @@ class TreeMapTest {
     @:describe("Should be able to access a value added to the tree")
     public function getValues() {
         tree.clear();
-        tree.set(["a", "b"], 5);
-        tree.set(["a", "b", "c"], 6);
-        tree.set(["a", "c", "c"], 7);
+        tree.add(["a", "b"], 5);
+        tree.add(["a", "b", "c"], 6);
+        tree.add(["a", "c", "c"], 7);
 
         var asserts = new AssertionBuffer();
         asserts.assert(tree.get(["a", "b"]) == 5, "Returns: " + 5);
@@ -107,7 +107,7 @@ class TreeMapTest {
     @:describe("Should return right boolean if or not in the tree")
     public function testHas() {
         tree.clear();
-        tree.set(["a", "b"], 5);
+        tree.add(["a", "b"], 5);
 
         var asserts = new AssertionBuffer();
         asserts.assert(tree.has(["a", "b"]), "Returns the true");
@@ -118,7 +118,7 @@ class TreeMapTest {
     @:describe("Should be able to use the given matcher")
     public function testMatcher() {
         var caseInsensitiveTree = new TreeMap<String, Int>((s1:String, s2:String) -> s1.toLowerCase() == s2.toLowerCase());
-        caseInsensitiveTree.set(["a", "b"], 5);
+        caseInsensitiveTree.add(["a", "b"], 5);
         return new Assertion(caseInsensitiveTree.has(["A", "B"]), "Returns true");
     }
 }

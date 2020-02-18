@@ -30,7 +30,7 @@ class TreeMap<K, V> {
         }
     }
 
-    public function set(keys:Array<K>, value:V) {
+    public function add(keys:Array<K>, value:V) {
         var begin:Int = followPath(keys);
 
         for(i in begin...keys.length) {
