@@ -4,9 +4,9 @@
     "license": "MIT",
     "tags":["cross", "utility"],
     "description": "This library provides a way to store a value with a set of keys",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "classPath": "src/",
-    "releasenote": "Renamed the function set to add to match behaviour",
+    "releasenote": "Added a proper set method",
     "contributors": ["Rikoo"],
     "dependencies": {}
 }

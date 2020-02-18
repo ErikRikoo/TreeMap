@@ -25,6 +25,11 @@ It will throw an exception if the keys are already used.
 public function add(keys:Array<K>, value:V)
 ```
 
+The set method will have the same behaviour than add but will not throw an exception if the key are already used: it will overwrite the value.
+```haxe
+public function add(keys:Array<K>, value:V)
+```
+
 The tree can be cleared with this method.
 ```haxe
 public function clear()
