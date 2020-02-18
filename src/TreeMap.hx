@@ -31,6 +31,29 @@ class TreeMap<K, V> {
     }
 
     public function add(keys:Array<K>, value:V) {
+        var node = createBranch(keys);
+
+        if(node.getTerminalValue() == null) {
+            node.appendChild(Terminal(value));
+        } else {
+            throw "Value is already set";
+        }
+
+        current = null;
+    }
+
+    public function set(keys:Array<K>, value:V) {
+        var node = createBranch(keys);
+        node.updateTerminalValue(value);
+
+        current = null;
+    }
+
+    public function clear() {
+        root = Root([]);
+    }
+
+    private function createBranch(keys:Array<K>) {
         var begin:Int = followPath(keys);
 
         for(i in begin...keys.length) {
@@ -39,17 +62,7 @@ class TreeMap<K, V> {
             current = newNode;
         }
 
-        if(current.getTerminalValue() == null) {
-            current.appendChild(Terminal(value));
-        } else {
-            throw "Value is already set";
-        }
-
-        current = null;
-    }
-
-    public function clear() {
-        root = Root([]);
+        return current;
     }
 
     private function followPath(keys:Array<K>):Int {

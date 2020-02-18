@@ -73,7 +73,7 @@ class TreeMapTest {
         }
     }
 
-    @describe("Should throw an exception if the pair (kays, value) is already add")
+    @describe("Should throw an exception if the pair (kays, value) is already added")
     public function insertErrorTesting() {
         try{
             tree.add(["a", "c", "c"], 7);
@@ -120,5 +120,85 @@ class TreeMapTest {
         var caseInsensitiveTree = new TreeMap<String, Int>((s1:String, s2:String) -> s1.toLowerCase() == s2.toLowerCase());
         caseInsensitiveTree.add(["a", "b"], 5);
         return new Assertion(caseInsensitiveTree.has(["A", "B"]), "Returns true");
+    }
+
+    
+    @:describe("Set should update a value already created if it is the same keys")
+    public function testSetUpdatingValue() {
+        tree.clear();
+        tree.add(["a", "b"], 5);
+        tree.set(["a", "b"], 6);
+
+        switch(tree.root) {
+            case Root([
+                Node(
+                    "a", [
+                        Node("b", [
+                            Terminal(6)
+                        ])
+                    ])
+                ]):
+                return new Assertion(true, "Passing");
+            default:
+                return new Assertion(false, "Not Passing");
+        }
+    }
+
+    @:describe("Set should create a one branch tree for the first insert")
+    public function setTestInsertOne() {
+        tree.clear();
+        tree.set(["a", "b"], 5);
+
+        switch(tree.root) {
+            case Root([
+                Node(
+                    "a", [
+                        Node("b", [
+                            Terminal(5)
+                        ])
+                    ])
+                ]):
+                return new Assertion(true, "Passing");
+            default:
+                return new Assertion(false, "Not Passing");
+        }
+    }
+
+    @:describe("Should create new nodes on the same branchs if the keys are the same")
+    public function setInsertOnSameBranch() {
+        tree.set(["a", "b", "c"], 6);
+
+        switch(tree.root) {
+            case Root([
+                Node(
+                    "a", [
+                        Node("b", [
+                            Terminal(5), Node("c", [Terminal(6)])
+                        ])
+                    ])
+                ]):
+                return new Assertion(true, "Passing");
+            default:
+                return new Assertion(false, "Not Passing");
+        }
+    }
+
+    @:describe("Should create a new branch if keys are different at some point")
+    public function setInsertOnAnotherBranch() {
+        tree.set(["a", "c", "c"], 7);
+
+        switch(tree.root) {
+            case Root([
+                Node(
+                    "a", [
+                        _, Node("c", [
+                            Node("c", [Terminal(7)])
+                        ])
+                    ])
+                ]):
+                return new Assertion(true, "Passing");
+            default:
+                return new Assertion(false, "Not Passing");
+        }
     }
 }
