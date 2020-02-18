@@ -4,7 +4,7 @@ using Util;
 
 private typedef Matcher<T> = (v1:T, v2:T) -> Bool;
 
-class TreeMap<K, V> {
+class Trie<K, V> {
     private var root:NodeType<K, V> = Root([]);
     private var current:NodeType<K, V> = null;
     private var matcher:Matcher<K>;

@@ -1,19 +1,19 @@
 package ;
 
 import tink.unit.AssertionBuffer;
-import TreeMap;
+import Trie;
 
 import tink.testrunner.Assertion;
 import tink.unit.Assert.*;
 
-@:access(TreeMap.root)
-@:access(TreeMap.NodeType)
-@:access(TreeMap.Pair)
+@:access(Trie.root)
+@:access(Trie.NodeType)
+@:access(Trie.Pair)
 class TreeMapTest {
-    var tree:TreeMap<String, Int>;
+    var tree:Trie<String, Int>;
 
     public function new() {
-        tree = new TreeMap();
+        tree = new Trie();
     }
 
     @:describe("Should create a one branch tree for the first insert")
@@ -117,7 +117,7 @@ class TreeMapTest {
 
     @:describe("Should be able to use the given matcher")
     public function testMatcher() {
-        var caseInsensitiveTree = new TreeMap<String, Int>((s1:String, s2:String) -> s1.toLowerCase() == s2.toLowerCase());
+        var caseInsensitiveTree = new Trie<String, Int>((s1:String, s2:String) -> s1.toLowerCase() == s2.toLowerCase());
         caseInsensitiveTree.add(["a", "b"], 5);
         return new Assertion(caseInsensitiveTree.has(["A", "B"]), "Returns true");
     }

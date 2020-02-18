@@ -1,5 +1,5 @@
 {
-    "name": "Tree_Map",
+    "name": "trie",
     "url": "https://github.com/ErikRikoo/TreeMap",
     "license": "MIT",
     "tags":["cross", "utility"],
