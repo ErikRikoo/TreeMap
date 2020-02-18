@@ -22,7 +22,7 @@ public function get(keys:Array<K>):V
 You can add a value to the tree with the given keys. You should avoid null because it is currently the value used to show there is no return.
 It will throw an exception if the keys are already used.
 ```haxe
-public function set(keys:Array<K>, value:V)
+public function add(keys:Array<K>, value:V)
 ```
 
 The tree can be cleared with this method.
