@@ -48,6 +48,20 @@ class TreeMap<K, V> {
         current = null;
     }
 
+    public function set(keys:Array<K>, value:V) {
+        var begin:Int = followPath(keys);
+
+        for(i in begin...keys.length) {
+            var newNode:NodeType<K, V> = Node(keys[i], []);
+            current.appendChild(newNode);
+            current = newNode;
+        }
+
+        current.updateTerminalValue(value);
+
+        current = null;
+    }
+
     public function clear() {
         root = Root([]);
     }
