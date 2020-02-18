@@ -1,4 +1,4 @@
-Tree Map data structure for Haxe
+Trie data structure for Haxe
 ===
 This library provides a trie data structure. It allows to store a value with a list of keys.
 You can check https://en.wikipedia.org/wiki/Trie for more information.
