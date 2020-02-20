@@ -4,9 +4,9 @@
     "license": "MIT",
     "tags":["cross", "utility"],
     "description": "This library provides a way to store a value with a list of keys as the key i.e. a trie data structure",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "classPath": "src/",
-    "releasenote": "Added clarity to the data structure",
+    "releasenote": "Added root package",
     "contributors": ["Rikoo"],
     "dependencies": {
         "singlePatternSwitch" : ""
