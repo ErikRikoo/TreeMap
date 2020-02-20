@@ -1,10 +1,13 @@
-import NodeType;
+package trie;
 
-using Util;
+import enumExtractor.EnumExtractor;
+import trie.NodeType;
+
+using trie.Util;
 
 private typedef Matcher<T> = (v1:T, v2:T) -> Bool;
 
-class Trie<K, V> {
+class Trie<K, V> implements EnumExtractor{
     private var root:NodeType<K, V> = Root([]);
     private var current:NodeType<K, V> = null;
     private var matcher:Matcher<K>;
@@ -86,10 +89,8 @@ class Trie<K, V> {
         switch(node) {
             case Root(children) | Node(_, children):
                 for(child in children) {
-                    switch(child) {
-                        case Node(k, _) if (matcher(k, key)):
-                            return child;
-                        default:
+                    @as(child => Node(k, _), @if matcher(k, key)) {
+                        return child;
                     }
                 }
             default:

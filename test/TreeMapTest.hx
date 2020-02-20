@@ -1,14 +1,14 @@
 package ;
 
 import tink.unit.AssertionBuffer;
-import Trie;
+import trie.Trie;
 
 import tink.testrunner.Assertion;
 import tink.unit.Assert.*;
 
-@:access(Trie.root)
-@:access(Trie.NodeType)
-@:access(Trie.Pair)
+@:access(trie.Trie.root)
+@:access(trie.Trie.NodeType)
+@:access(trie.Trie.Pair)
 class TreeMapTest {
     var tree:Trie<String, Int>;
 

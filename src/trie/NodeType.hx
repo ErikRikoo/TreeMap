@@ -1,4 +1,4 @@
-package;
+package trie;
 
 enum NodeType<K, V> {
     Terminal(value:V);

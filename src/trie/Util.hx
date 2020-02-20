@@ -1,8 +1,9 @@
-package;
+package trie;
 
-import NodeType;
+import enumExtractor.EnumExtractor;
+import trie.NodeType;
 
-class NodeTypeUtil {
+class NodeTypeUtil implements EnumExtractor {
     public static function getTerminalValue<K, V>(node:NodeType<K, V>) : V {
         switch(node) {
             case null:
@@ -11,10 +12,8 @@ class NodeTypeUtil {
                 return v;
             case Node(_, children) | Root(children):
                 for(child in children) {
-                    switch(child) {
-                        case Terminal(v):
-                            return v;
-                        default:
+                    @as(child => Terminal(v)) {
+                        return v;
                     }
                 }
                 return null;
@@ -26,11 +25,9 @@ class NodeTypeUtil {
             case Node(_, children) | Root(children):
                 var hasChanged:Bool = false;
                 for(i in 0...children.length) {
-                    switch(children[i]) {
-                        case Terminal(_):
-                            children[i] = Terminal(value);
-                            hasChanged = true;
-                        default:
+                    @as(children[i] => Terminal(_)) {
+                        children[i] = Terminal(value);
+                        hasChanged = true;
                     }
                 }
                 if(!hasChanged) {
@@ -41,10 +38,8 @@ class NodeTypeUtil {
     }
 
     public static function appendChild<K, V>(node:NodeType<K, V>, child:NodeType<K, V>) : Void {
-        switch(node) {
-            case Node(_, children) | Root(children):
-                children.push(child);
-            default:
+        @as(node => Node(_, children) | Root(children)) {
+            children.push(child);
         }
     }
 }

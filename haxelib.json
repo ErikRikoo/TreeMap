@@ -8,5 +8,7 @@
     "classPath": "src/",
     "releasenote": "Added clarity to the data structure",
     "contributors": ["Rikoo"],
-    "dependencies": {}
+    "dependencies": {
+        "singlePatternSwitch" : ""
+    }
 }

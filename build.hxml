@@ -2,5 +2,6 @@
 -cp test
 -D analyzer-optimize
 -lib tink_unittest
+-lib singlePatternSwitch
 -main Main
 --interp
